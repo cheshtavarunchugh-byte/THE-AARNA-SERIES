@@ -1,0 +1,1549 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AARNA: THE ORIGINAL SERIES</title>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   NETFLIX INTRO
+========================================================= */
+
+#netflixIntro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: introFade 1s ease 3.5s forwards;
+}
+
+.netflixLogo {
+    font-family: Arial, sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: #e50914;
+
+    opacity: 0;
+    transform: scale(1.4);
+
+    animation:
+        netflixAppear 1.8s ease forwards,
+        netflixGlow 1s ease 2s forwards;
+}
+
+@keyframes netflixAppear {
+
+    0% {
+        opacity: 0;
+        transform: scale(1.5);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes netflixGlow {
+
+    0% {
+        text-shadow: 0 0 0px #e50914;
+    }
+
+    100% {
+        text-shadow: 0 0 40px rgba(229,9,20,0.7);
+    }
+}
+
+@keyframes introFade {
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+/* =========================================================
+   HOME SCREEN
+========================================================= */
+
+#home {
+    display: none;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #4b1d2c 0%,
+            #1a0d13 35%,
+            #070507 75%
+        );
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.netflixOriginal {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #cdaeba;
+    margin-bottom: 30px;
+}
+
+.birthdayCircle {
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f4bdcc,
+            #a14f6c
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 30px rgba(241,157,181,0.35),
+        0 0 90px rgba(241,157,181,0.12);
+
+    transition: all 0.4s ease;
+
+    animation: circleAppear 1s ease 4s backwards;
+}
+
+.birthdayCircle:hover {
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 45px rgba(241,157,181,0.65),
+        0 0 120px rgba(241,157,181,0.2);
+}
+
+.birthdayCircle span {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 25px;
+
+    color: white;
+}
+
+.homeTitle {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 45px;
+
+    margin-top: 35px;
+}
+
+.homeSubtitle {
+
+    color: #c8b0b9;
+
+    font-size: 14px;
+
+    margin-top: 10px;
+}
+
+@keyframes circleAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   SERIES HOME
+========================================================= */
+
+.page {
+
+    display: none;
+
+    min-height: 100vh;
+
+    padding: 45px 7%;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #5c2338,
+            #160a10 45%,
+            #050505 85%
+        );
+}
+
+.backButton {
+
+    color: #cdb1ba;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    margin-bottom: 35px;
+
+    transition: 0.3s;
+}
+
+.backButton:hover {
+    color: white;
+}
+
+
+/* =========================================================
+   SERIES COVER
+========================================================= */
+
+.seriesCover {
+
+    display: flex;
+
+    gap: 45px;
+
+    align-items: center;
+
+    margin-bottom: 65px;
+}
+
+.coverImage {
+
+    width: 330px;
+    height: 220px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background: #211017;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    flex-shrink: 0;
+}
+
+.coverImage img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.coverPlaceholder {
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: #a88c95;
+
+    padding: 20px;
+
+    font-size: 12px;
+}
+
+.seriesDetails h1 {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 48px;
+
+    margin-bottom: 12px;
+}
+
+.seriesDetails .original {
+
+    color: #e18ca8;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.seriesDescription {
+
+    color: #cbb8bf;
+
+    line-height: 1.8;
+
+    max-width: 600px;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   EPISODES
+========================================================= */
+
+.episodesHeading {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+}
+
+.episodesContainer {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 35px;
+}
+
+.episodeCircle {
+
+    width: 165px;
+    height: 165px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #401a29,
+            #16090f
+        );
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    cursor: pointer;
+
+    transition: all 0.4s ease;
+}
+
+.episodeCircle:hover {
+
+    transform: translateY(-10px) scale(1.06);
+
+    background:
+        linear-gradient(
+            145deg,
+            #7b3853,
+            #29101b
+        );
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.5);
+}
+
+.episodeCircle span {
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   EPISODE PAGE
+========================================================= */
+
+.episodePage {
+
+    display: none;
+
+    min-height: 100vh;
+
+    padding: 45px 7%;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #59243a,
+            transparent 45%
+        ),
+        #060506;
+}
+
+.episodeInner {
+
+    max-width: 1000px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.episodeNumber {
+
+    color: #d889a4;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-top: 25px;
+}
+
+.episodeTitle {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 55px;
+
+    margin-top: 15px;
+
+    margin-bottom: 40px;
+}
+
+
+/* =========================================================
+   VIDEO
+========================================================= */
+
+.videoContainer {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+    background: #000;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.6);
+
+    border: 1px solid rgba(255,255,255,0.12);
+}
+
+.videoContainer video {
+
+    width: 100%;
+
+    display: block;
+
+    max-height: 600px;
+
+    background: black;
+}
+
+.videoPlaceholder {
+
+    height: 500px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #8f7881;
+
+    gap: 10px;
+}
+
+.videoPlaceholder strong {
+
+    color: #c8aab4;
+
+    font-size: 18px;
+}
+
+.videoPlaceholder span {
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   EPISODE DESCRIPTION
+========================================================= */
+
+.episodeDescription {
+
+    max-width: 700px;
+
+    margin: 35px auto;
+
+    color: #cbb8bf;
+
+    line-height: 1.9;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+.nextButton {
+
+    margin-top: 25px;
+
+    padding: 13px 28px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    background: rgba(255,255,255,0.05);
+
+    color: white;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.nextButton:hover {
+
+    background: white;
+
+    color: #160a10;
+}
+
+
+/* =========================================================
+   FINAL CANVA COLLAGE
+========================================================= */
+
+.finalSection {
+
+    margin-top: 80px;
+
+    padding-top: 60px;
+
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.finalLabel {
+
+    color: #d889a4;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+}
+
+.finalSection h2 {
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 42px;
+
+    margin-bottom: 30px;
+}
+
+.finalCollage {
+
+    max-width: 850px;
+
+    margin: auto;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.6);
+}
+
+.finalCollage img {
+
+    width: 100%;
+
+    display: block;
+}
+
+.finalPlaceholder {
+
+    min-height: 450px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #381522,
+            #15090e
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #a98c95;
+
+    font-size: 13px;
+}
+
+.finalMessage {
+
+    max-width: 700px;
+
+    margin: 40px auto 100px;
+
+    font-family: 'DM Serif Display', serif;
+
+    font-size: 24px;
+
+    line-height: 1.8;
+
+    color: #f0dce2;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width: 750px) {
+
+    .netflixLogo {
+        font-size: 80px;
+    }
+
+    .homeTitle {
+        font-size: 32px;
+    }
+
+    .birthdayCircle {
+        width: 160px;
+        height: 160px;
+    }
+
+    .seriesCover {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+    }
+
+    .coverImage {
+        width: 100%;
+        height: 230px;
+    }
+
+    .seriesDetails h1 {
+        font-size: 36px;
+    }
+
+    .episodesContainer {
+        justify-content: center;
+    }
+
+    .episodeCircle {
+        width: 145px;
+        height: 145px;
+    }
+
+    .episodeTitle {
+        font-size: 40px;
+    }
+
+    .videoPlaceholder {
+        height: 300px;
+    }
+
+    .finalSection h2 {
+        font-size: 34px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NETFLIX INTRO
+===================================================== -->
+
+<div id="netflixIntro">
+
+    <div class="netflixLogo">
+        N
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     HOME / BDAY GIRL
+===================================================== -->
+
+<section id="home">
+
+    <div class="netflixOriginal">
+        A NETFLIX ORIGINAL
+    </div>
+
+
+    <div
+        class="birthdayCircle"
+        onclick="openSeries()"
+    >
+
+        <span>
+            Bday Girl ❤️
+        </span>
+
+    </div>
+
+
+    <h1 class="homeTitle">
+        Welcome to Aarna's universe.
+    </h1>
+
+
+    <p class="homeSubtitle">
+        One girl. Five episodes. Way too many memories.
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     SERIES PAGE
+===================================================== -->
+
+<section id="series" class="page">
+
+    <div
+        class="backButton"
+        onclick="goHome()"
+    >
+        ← Back
+    </div>
+
+
+    <!-- SERIES COVER -->
+
+    <div class="seriesCover">
+
+
+        <!--
+        ==================================================
+        PUT YOUR FIRST CANVA COLLAGE HERE
+
+        Change:
+
+        first-collage.jpg
+
+        to your actual image filename.
+
+        Example:
+
+        <img src="images/first-collage.jpg">
+
+        ==================================================
+        -->
+
+        <div class="coverImage">
+
+            <img
+                src="first-collage.jpg"
+                alt="Aarna Series Cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            >
+
+            <div class="coverPlaceholder">
+
+                YOUR FIRST CANVA COLLAGE GOES HERE
+
+            </div>
+
+        </div>
+
+
+
+        <div class="seriesDetails">
+
+            <div class="original">
+                A NETFLIX ORIGINAL
+            </div>
+
+            <h1>
+                AARNA: THE ORIGINAL SERIES
+            </h1>
+
+            <p class="seriesDescription">
+
+                A five-episode limited series documenting
+                the childhood, chaos, memories, unexpected
+                characters and the people who love Aarna
+                the most.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- EPISODES -->
+
+    <h2 class="episodesHeading">
+        Episodes
+    </h2>
+
+
+    <div class="episodesContainer">
+
+
+        <!-- EPISODE 1 -->
+
+        <div
+            class="episodeCircle"
+            onclick="openEpisode(1)"
+        >
+
+            <span>
+                Episode 1<br>
+                Before the Chaos...
+            </span>
+
+        </div>
+
+
+
+        <!-- EPISODE 2 -->
+
+        <div
+            class="episodeCircle"
+            onclick="openEpisode(2)"
+        >
+
+            <span>
+                Episode 2<br>
+                Cutest Memories
+            </span>
+
+        </div>
+
+
+
+        <!-- EPISODE 3 -->
+
+        <div
+            class="episodeCircle"
+            onclick="openEpisode(3)"
+        >
+
+            <span>
+                Episode 3<br>
+                Unfortunately She Met Me...
+            </span>
+
+        </div>
+
+
+
+        <!-- EPISODE 4 -->
+
+        <div
+            class="episodeCircle"
+            onclick="openEpisode(4)"
+        >
+
+            <span>
+                Episode 4<br>
+                Entry of a New Character
+            </span>
+
+        </div>
+
+
+
+        <!-- EPISODE 5 -->
+
+        <div
+            class="episodeCircle"
+            onclick="openEpisode(5)"
+        >
+
+            <span>
+                Episode 5<br>
+                The Two People Who Love Her The Most
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EPISODE 1
+===================================================== -->
+
+<section id="episode1" class="episodePage">
+
+    <div
+        class="backButton"
+        onclick="backToSeries()"
+    >
+        ← Back to Episodes
+    </div>
+
+
+    <div class="episodeInner">
+
+        <div class="episodeNumber">
+            EPISODE 01
+        </div>
+
+        <h1 class="episodeTitle">
+            Before the Chaos...
+        </h1>
+
+
+        <!--
+        ==================================================
+        EPISODE 1 VIDEO
+
+        Put your MP4 in the same folder as this HTML file.
+
+        Rename it:
+
+        episode1.mp4
+
+        ==================================================
+        -->
+
+        <div class="videoContainer">
+
+            <video controls playsinline>
+
+                <source
+                    src="episode1.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <p class="episodeDescription">
+
+            Before the chaos, before all the inside jokes,
+            before everything became a story worth telling...
+
+            there was just Aarna.
+
+        </p>
+
+
+        <button
+            class="nextButton"
+            onclick="openEpisode(2)"
+        >
+            Next Episode →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EPISODE 2
+===================================================== -->
+
+<section id="episode2" class="episodePage">
+
+    <div
+        class="backButton"
+        onclick="backToSeries()"
+    >
+        ← Back to Episodes
+    </div>
+
+
+    <div class="episodeInner">
+
+        <div class="episodeNumber">
+            EPISODE 02
+        </div>
+
+        <h1 class="episodeTitle">
+            Cutest Memories
+        </h1>
+
+
+        <!--
+        Rename your video:
+
+        episode2.mp4
+        -->
+
+        <div class="videoContainer">
+
+            <video controls playsinline>
+
+                <source
+                    src="episode2.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <p class="episodeDescription">
+
+            The memories that deserve their own little
+            corner of the internet.
+
+        </p>
+
+
+        <button
+            class="nextButton"
+            onclick="openEpisode(3)"
+        >
+            Next Episode →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EPISODE 3
+===================================================== -->
+
+<section id="episode3" class="episodePage">
+
+    <div
+        class="backButton"
+        onclick="backToSeries()"
+    >
+        ← Back to Episodes
+    </div>
+
+
+    <div class="episodeInner">
+
+        <div class="episodeNumber">
+            EPISODE 03
+        </div>
+
+        <h1 class="episodeTitle">
+            Unfortunately She Met Me...
+        </h1>
+
+
+        <!--
+        Rename your video:
+
+        episode3.mp4
+        -->
+
+        <div class="videoContainer">
+
+            <video controls playsinline>
+
+                <source
+                    src="episode3.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <p class="episodeDescription">
+
+            And unfortunately for her...
+
+            she got me.
+
+            Probably one of the most questionable
+            plot twists in this entire series.
+
+        </p>
+
+
+        <button
+            class="nextButton"
+            onclick="openEpisode(4)"
+        >
+            Next Episode →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EPISODE 4
+===================================================== -->
+
+<section id="episode4" class="episodePage">
+
+    <div
+        class="backButton"
+        onclick="backToSeries()"
+    >
+        ← Back to Episodes
+    </div>
+
+
+    <div class="episodeInner">
+
+        <div class="episodeNumber">
+            EPISODE 04
+        </div>
+
+        <h1 class="episodeTitle">
+            Entry of a New Character
+        </h1>
+
+
+        <!--
+        Rename your video:
+
+        episode4.mp4
+        -->
+
+        <div class="videoContainer">
+
+            <video controls playsinline>
+
+                <source
+                    src="episode4.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <p class="episodeDescription">
+
+            Every good series needs a new character.
+
+            And this one definitely changed the storyline.
+
+        </p>
+
+
+        <button
+            class="nextButton"
+            onclick="openEpisode(5)"
+        >
+            Next Episode →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     EPISODE 5
+===================================================== -->
+
+<section id="episode5" class="episodePage">
+
+    <div
+        class="backButton"
+        onclick="backToSeries()"
+    >
+        ← Back to Episodes
+    </div>
+
+
+    <div class="episodeInner">
+
+        <div class="episodeNumber">
+            EPISODE 05
+        </div>
+
+        <h1 class="episodeTitle">
+            The Two People Who Love Her The Most
+        </h1>
+
+
+        <!--
+        Rename your video:
+
+        episode5.mp4
+        -->
+
+        <div class="videoContainer">
+
+            <video controls playsinline>
+
+                <source
+                    src="episode5.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support video.
+
+            </video>
+
+        </div>
+
+
+        <p class="episodeDescription">
+
+            And now we reach the final episode...
+
+            starring two people who probably have
+            the biggest soft spot for this girl.
+
+        </p>
+
+
+
+        <!-- =================================================
+             FINAL CANVA COLLAGE
+        ================================================= -->
+
+        <div class="finalSection">
+
+            <div class="finalLabel">
+                SEASON FINALE
+            </div>
+
+            <h2>
+                And that's a wrap. ❤️
+            </h2>
+
+
+            <!--
+            =================================================
+            PUT YOUR FINAL CANVA COLLAGE HERE
+
+            Rename your final Canva image:
+
+            final-collage.jpg
+
+            =================================================
+            -->
+
+            <div class="finalCollage">
+
+                <img
+                    src="final-collage.jpg"
+                    alt="Final Birthday Collage"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+
+                <div class="finalPlaceholder">
+
+                    YOUR FINAL CANVA COLLAGE GOES HERE
+
+                </div>
+
+            </div>
+
+
+            <!-- FINAL MESSAGE -->
+
+            <p class="finalMessage">
+
+                To the girl who somehow turned years
+                of memories into a whole series...
+
+                Happy Birthday, Aarna. ❤️
+
+                Here's to all the episodes we've already
+                lived, and all the ones that haven't happened
+                yet.
+
+                <br><br>
+
+                Season 1: complete.
+
+                <br>
+
+                Season 2: coming soon...
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* -------------------------------------------------------
+   SHOW HOME AFTER NETFLIX INTRO
+------------------------------------------------------- */
+
+setTimeout(function() {
+
+    document.getElementById("netflixIntro").style.display = "none";
+
+    document.getElementById("home").style.display = "flex";
+
+}, 4500);
+
+
+
+/* -------------------------------------------------------
+   OPEN SERIES
+------------------------------------------------------- */
+
+function openSeries() {
+
+    document.getElementById("home").style.display = "none";
+
+    document.getElementById("series").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* -------------------------------------------------------
+   GO HOME
+------------------------------------------------------- */
+
+function goHome() {
+
+    document.getElementById("series").style.display = "none";
+
+    document.getElementById("home").style.display = "flex";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* -------------------------------------------------------
+   OPEN EPISODE
+------------------------------------------------------- */
+
+function openEpisode(number) {
+
+    /*
+       Hide everything first
+    */
+
+    document.getElementById("series").style.display = "none";
+
+    document.querySelectorAll(".episodePage").forEach(function(page) {
+
+        page.style.display = "none";
+
+    });
+
+
+    /*
+       Show selected episode
+    */
+
+    document.getElementById("episode" + number).style.display = "block";
+
+
+    /*
+       Scroll to top
+    */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+
+/* -------------------------------------------------------
+   BACK TO EPISODES
+------------------------------------------------------- */
+
+function backToSeries() {
+
+    /*
+       Stop any currently playing videos
+    */
+
+    document.querySelectorAll("video").forEach(function(video) {
+
+        video.pause();
+
+        video.currentTime = 0;
+
+    });
+
+
+    /*
+       Hide episode pages
+    */
+
+    document.querySelectorAll(".episodePage").forEach(function(page) {
+
+        page.style.display = "none";
+
+    });
+
+
+    /*
+       Show series page
+    */
+
+    document.getElementById("series").style.display = "block";
+
+
+    /*
+       Scroll to top
+    */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+
+</body>
+</html>
+
+
+
